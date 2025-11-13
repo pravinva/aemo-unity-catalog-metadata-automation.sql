@@ -2,7 +2,7 @@
 
 ## Overview
 
-**Yes, you're correct!** Vector search results are just chunks of text. To make them useful in a chat application, you need to combine them with an LLM using the **RAG (Retrieval Augmented Generation)** pattern.
+!** Vector search results are just chunks of text. To make them useful in a chat application, you need to combine them with an LLM using the **RAG (Retrieval Augmented Generation)** pattern.
 
 ## The RAG Pattern
 
