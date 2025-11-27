@@ -31,29 +31,7 @@ Return answer to user
 
 ## Implementation Options
 
-### Option 1: Databricks Genie (Easiest)
-
-**Databricks Genie** does RAG automatically! It:
-- Has built-in vector search integration
-- Handles context retrieval
-- Generates answers using foundation models
-- Provides chat interface
-
-**Example:**
-```python
-# Genie handles RAG automatically
-response = genie_client.ask(
-    space_id="your-space",
-    question="What is dispatch price?",
-    # Genie automatically:
-    # 1. Searches vector index
-    # 2. Retrieves relevant chunks
-    # 3. Sends to LLM with context
-    # 4. Returns natural answer
-)
-```
-
-### Option 2: Custom RAG with Databricks Foundation Models
+### Option 1: Custom RAG with Databricks Foundation Models
 
 Use Databricks Foundation Models API with your vector search:
 
@@ -76,7 +54,7 @@ response = serving_api.query_endpoint(
 )
 ```
 
-### Option 3: Custom RAG with OpenAI/Anthropic
+### Option 2: Custom RAG with OpenAI/Anthropic
 
 ```python
 import openai
@@ -176,12 +154,14 @@ python chat_with_vector_search.py "What is dispatch price?"
 
 ## Production Recommendations
 
-1. **Use Databricks Genie**: Simplest option, handles RAG automatically
-2. **Use Databricks Foundation Models**: Good for custom control
+1. **Use Databricks Foundation Models**: Good balance of control and integration
+2. **Use OpenAI/Anthropic**: If you need specific model capabilities
 3. **Add Caching**: Cache common queries to reduce LLM calls
 4. **Add Streaming**: Stream LLM responses for better UX
 5. **Add Citations**: Always cite page numbers/sources
 6. **Add Error Handling**: Handle LLM failures gracefully
+
+**Note:** Databricks Genie is a conversational AI assistant for SQL/analytics queries. It does not directly query vector search indexes. For RAG with vector search, you need to implement the pattern shown above: vector search → format context → send to LLM.
 
 ## Key Benefits of RAG
 
@@ -193,8 +173,13 @@ python chat_with_vector_search.py "What is dispatch price?"
 
 ## Next Steps
 
-1. Set up Databricks Genie (recommended)
-2. Or configure Foundation Models endpoint
-3. Integrate RAG into your chat application
+1. Set up a Databricks Foundation Models endpoint (recommended)
+2. Or configure OpenAI/Anthropic API access
+3. Integrate RAG into your chat application using the pattern above
 4. Add streaming and caching for production
+5. Test with `rag_example.py` to see the complete RAG flow
+
+
+
+
 
